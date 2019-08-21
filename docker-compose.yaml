@@ -4,7 +4,7 @@ services:
   phpslim:
     build: ./php
     volumes:
-      - ./app:/usr/src/app
+      - ./app-php:/usr/src/app
     expose:
       - 80
     links:
