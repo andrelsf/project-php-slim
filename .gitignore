@@ -1,0 +1,6 @@
+mysql/.data
+mysql/.env
+app/data/cache/doctrine/*/*.doctrinecache.data
+app/.gitignore
+app/vendor
+app/src/Config/Mysql.php
