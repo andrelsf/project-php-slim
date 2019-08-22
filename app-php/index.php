@@ -140,19 +140,18 @@ $app->get('/api/user/{user_id}', function (Request $request, Response $response)
     $entityManager = $this->get(EntityManager::class);
     $usersRepository = $entityManager->getRepository('App\Models\Entity\UserEntity');
     $user = $usersRepository->find($user_id);
-    if (!$user) {
-        throw new \Exception("Usuario não encontrado.", 404);
-    }
-    $return = $response->withJson(
-        ['status' => 'success', 'user' => $user], 200
-    )->withHeader('Content-type', 'application/json');
-    return $return;
+    $data_nascimento = date_format($user->data_nascimento, "d/m/Y");
+    //var_dump($data_nascimento);
+    return $this->renderer->render($response, 'userDetails.phtml', [
+            'user' => $user,
+            'data_nascimento' => $data_nascimento
+        ]);
 })->setName('getOneUser')->add('Auth');
 
 /**
  * /api/user/{user_id}
  * 
- * PUT - Atualiza os dados do usuário
+ * POST - Atualiza os dados do usuário
  * 
  * Valida se usuário existe e atualiza os dados caso exista
  * 
@@ -230,7 +229,12 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
     $usersRepository = $entityManager->getRepository('App\Models\Entity\UserEntity');
     $user = $usersRepository->findOneBy(['email' => $email_req]);
     if (!$user) {
-        throw new \Exception("User not found.", 404);
+        return $this->renderer->render($response, 'mensage.phtml', [
+            'error' => true,
+            'url_for' => '/',
+            'mensage' => "Falha ao realizar o login usuario! :("
+        ]);
+        //throw new \Exception("User not found.", 404);
     } elseif (($user->email === $email_req) and ($user->senha === $senha_req)) {
         $_SESSION['isLoggedIn'] = 'yes';
         session_regenerate_id();
@@ -243,7 +247,7 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
 });
 
 /**
- * /api/logout TODO
+ * /api/logout
  */
 $app->get('/api/logout', function (Request $request, Response $response, $args) {
     unset($_SESSION['isLoggedIn']);

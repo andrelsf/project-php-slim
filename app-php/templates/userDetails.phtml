@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title>Gestão Empresarial</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-left">
+                        <h2>Detalhes:</h2><h3><?= $user->nome ?></h3>
+                    </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                <th></th>
+                                <th>Voltar: <a href="/homeusers">Lista de Usuários</a></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th>
+                                    <td align="right">
+                                        <label>Nome:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $user->nome ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <td align="right">
+                                        <label>CPF:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $user->cpf ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            <tr>
+                            <th >
+                            <td align="right">
+                                        <label>Telefone:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $user->telefone ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            <tr>
+                            <th >
+                            <td align="right">
+                                        <label>Email:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $user->email ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th >
+                                <td align="right">
+                                        <label>Data Nascimento:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $data_nascimento ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th >
+                                <td align="right">
+                                        <label>Rua:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $user->rua ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th >
+                                <td align="right">
+                                        <label>Número:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $user->numero ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th >
+                                <td align="right">
+                                        <label>Bairro:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $user->bairro ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th >
+                                <td align="right">
+                                        <label>Cidade:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $user->cidade ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th >
+                                <td align="right">
+                                        <label>Estado:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $user->estado ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th >
+                                <td align="right">
+                                        <label>Complemento:</label>
+                                    </td>
+                                    <td>    
+                                        <?= $user->complemento ?>
+                                    </td>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
