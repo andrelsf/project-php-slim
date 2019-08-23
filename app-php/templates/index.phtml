@@ -5,39 +5,41 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="templates/css/style_login.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="col col-lg-2">
-                </div>
-                <div class="col-md-auto">
-                    <div class="text-center">
-                        <h2>Login</h2>
+        <div id="form-container">
+            <div class="panel" id="form-box">
+                <form action="/api/login" method="POST">
+                    <h1 class="text-center">Login</h1>
+                    
+                    <div class="form-group">
+                        <label class="sr-only" for="email">Email:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-user"></span>
+                            </div>
+                            <input type="text" class="form-control" id="email" name="email" aria-describedby="email" placeholder="Email">
+                        </div>    
                     </div>
-                    <form action="/api/login" method="POST">
-                        <div class="form-group">
-                            <label for="email">Emails</label>
-                            <input type="text" class="form-control" id="email" name="email" aria-describedby="email" placeholder="email">
-                        </div>
-                        <div class="form-group">
-                            <label for="senha">Senha</label>
-                            <input type="password" class="form-control" id="senha" name="senha" aria-describedby="senha" placeholder="senha">
-                        </div>
-                            <br>
-                            <input type="submit" value="Salvar" class="btn btn-primary"/>
-                    </form>
-                    <hr>
-                    <div>
-                        <center>
-                        <h4><p> Realizar <a href="/registro">registro</a></h4>
-                        </center>
+                    <div class="form-group">
+                        <label class="sr-only" for="senha">Senha:</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-lock"></span>
+                            </div>
+                            <input type="password" class="form-control" id="senha" name="senha" aria-describedby="senha" placeholder="Password">
+                        </div>    
                     </div>
-                </div>
-                <div class="col col-lg-2">
-                </div>
+                    <div class="form-group">
+                        <input type="submit" value="Entrar" class="btn btn-success form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <a href="/registro">Crie uma conta</a>
+                    </div>
+                </form>
             </div>
         </div>
     </body>
