@@ -1,0 +1,177 @@
+swagger: "2.0"
+info:
+  description: "Gestão de registros."
+  version: "1.0.0"
+  title: "Gestão Empresarial"
+  contact:
+    email: "andre.ferreira@soluti.com.br"
+host: "phpslim"
+basePath: "/api/v1/"
+tags:
+- name: "user"
+  description: "Gerencia de registro de usuários"
+schemes:
+- "http"
+paths:
+  /registry:
+    post:
+      tags:
+        - "user"
+      summary: "Registra um novo usuário"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/registry"
+      responses:
+        405:
+          description: "Invalid input"
+  /users:
+    get:
+      tags:
+        - "user"
+      description: "Busca todos os registros cadastrados."
+      summary: "Busca todos os registros cadastrados."
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "getAllUsers"
+          in: "query"
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "OK"
+        400:
+          description: "Valores não encontrado"
+  /user/{user_id}:
+    get:
+      tags:
+        - "user"
+      summary: "Encontra um unico usuário pelo ID"
+      produces:
+        - "application/json"
+      consumes:
+        - "application/json"
+      parameters:
+      - name: "user_id"
+        in: "path"
+        description: "ID usuário"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/user"
+        400:
+          description: "ID invalido"
+        404:
+          description: "Usuário não encontrado"
+  /login:
+    post:
+      tags:
+        - "user"
+      summary: "Tenta realizar o login do usuário"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/login"
+      responses:
+        405:
+          description: "Invalid input"
+  /logout:
+    get:
+      tags:
+        - "user"
+      description: "Faz logout do usuário"
+      summary: "Realiza logout do usuário"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: "logoutUser"
+          in: "query"
+          type: "array"
+          items:
+            type: "string"
+      responses:
+        200:
+          description: "OK"
+definitions:
+  user:
+    type: "object"
+    properties:
+      nome:
+        type: "string"
+      cpf:
+        type: "string"
+      telefone:
+        type: "string"
+      email:
+        type: "string"
+      data_nascimento:
+        type: "string"
+      senha:
+        type: "string"
+      rua:
+        type: "string"
+      cidade:
+        type: "string"
+      estado:
+        type: "string"
+      numero:
+        type: "integer"
+      bairro:
+        type: "string"
+      complemento:
+        type: "string"
+  registry:
+    type: "object"
+    properties:
+      nome:
+        type: "string"
+      cpf:
+        type: "string"
+      telefone:
+        type: "string"
+      email:
+        type: "string"
+      data_nascimento:
+        type: "string"
+      senha:
+        type: "string"
+      rua:
+        type: "string"
+      cidade:
+        type: "string"
+      estado:
+        type: "string"
+      numero:
+        type: "integer"
+      bairro:
+        type: "string"
+      complemento:
+        type: "string"
+  login:
+    type: "object"
+    properties:
+      email:
+        type: "string"
+      senha:
+        type: "string"
