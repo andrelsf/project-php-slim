@@ -70,9 +70,6 @@ $app->get('/api/users', function (Request $request, Response $response, $args) {
     $entityManager = $this->get(EntityManager::class);
     $usersRepository = $entityManager->getRepository('App\Models\Entity\UserEntity');
     $users = $usersRepository->findAll();
-    // $return = $response->withJson(
-    //     ['status' => 'success', 'users' => $users], 200
-    // )->withHeader('Content-type', 'application/json');
     return $users;
 })->setName('getAllUsers')->add('Auth');
 
@@ -118,7 +115,6 @@ $app->post('/api/registry', function ($request, $response, $args) {
             'url_for' => '/',
             'mensage' => "Falha ao registrar o novo usuario! :("
         ]);
-        //throw new \Exception("Falha ao registrar o novo usuario!\n\n".var_dump($e), 400);
     }
     return $this->renderer->render($response, 'mensage.phtml', [
         'error' => false,
@@ -141,7 +137,6 @@ $app->get('/api/user/{user_id}', function (Request $request, Response $response)
     $usersRepository = $entityManager->getRepository('App\Models\Entity\UserEntity');
     $user = $usersRepository->find($user_id);
     $data_nascimento = date_format($user->data_nascimento, "d/m/Y");
-    //var_dump($data_nascimento);
     return $this->renderer->render($response, 'userDetails.phtml', [
             'user' => $user,
             'data_nascimento' => $data_nascimento
@@ -199,18 +194,12 @@ $app->post('/api/user/{user_id}', function (Request $request, Response $response
             'url_for' => '/homeusers',
             'mensage' => "Falha ao Atualizar o usuario! :("
         ]);
-            // throw new \Exception([
-            //     'status' => 'fail',
-            //     'user_id' => $user_id, 
-            //     'message' => "Falha ao atualizar o usuario!"
-            // ], 400);
     }
     return $this->renderer->render($response, 'mensage.phtml', [
         'error' => false,
         'url_for' => '/homeusers',
         'mensage' => "Registro realizado com sucesso! :)"
     ]);
-    //return $response->withRedirect($this->router->pathFor('homeUsers'), 201);
 })->setName('updateOneUser')->add('Auth');
 
 /**
@@ -234,14 +223,13 @@ $app->post('/api/login', function (Request $request, Response $response, $args) 
             'url_for' => '/',
             'mensage' => "Falha ao realizar o login usuario! :("
         ]);
-        //throw new \Exception("User not found.", 404);
     } elseif (($user->email === $email_req) and ($user->senha === $senha_req)) {
         $_SESSION['isLoggedIn'] = 'yes';
         session_regenerate_id();
         /**
          * Login SUCCESS redirect to home page.
          */
-        return $response->withRedirect($this->router->pathFor('homeUsers')); #TODO
+        return $response->withRedirect($this->router->pathFor('homeUsers'));
     }
     return $this->renderer->render($response, 'index.phtml', $args);
 });
