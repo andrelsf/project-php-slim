@@ -4,4 +4,4 @@ app-php/data/cache/
 *.doctrinecache.data
 app-php/.gitignore
 app-php/vendor
-app-php/src/Config/Mysql.php
+app-php/src/Config/MySQL.php

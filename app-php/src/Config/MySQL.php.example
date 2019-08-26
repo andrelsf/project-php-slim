@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Template
+ */
 return [
     'mysql' => [
         'driver' => 'pdo_mysql',
