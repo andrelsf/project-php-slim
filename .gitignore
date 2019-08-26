@@ -1,6 +1,7 @@
 mysql/.data
 mysql/.env
-app/data/cache/doctrine/*/*.doctrinecache.data
-app/.gitignore
-app/vendor
-app/src/Config/Mysql.php
+app-php/data/cache/
+*.doctrinecache.data
+app-php/.gitignore
+app-php/vendor
+app-php/src/Config/Mysql.php

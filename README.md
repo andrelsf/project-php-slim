@@ -22,6 +22,49 @@ Suporte PSR para inspecionar e manipular os metodos, status, URI, Headers, cooki
 
 ## Instalação
 
+```bash
+$ git clone https://github.com/andrelsf/project-php-slim.git
+$ cd project-php-slim
+$ mkdir -p mysql/.data
+$ cp mysql/.env.example mysql/.env
+$ cp app-php/src/Config/MySQL.php.example app-php/src/Config/MySQL.php
+```
+
+`mysql/.env`
+```shell
+MYSQL_ROOT_PASSWORD=<MYSQL_ROOT_PASSWORD>
+MYSQL_DATABASE=<DB_NAME>
+MYSQL_USER=<DB_USER>
+MYSQL_PASSWORD=<DB_USER_PASSWORD>
+```
+
+`app-php/src/Config/MySQL.php`
+```php
+<?php
+
+return [
+    'mysql' => [
+        'driver' => 'pdo_mysql',
+        'host' => '<IP_ADDRESS>',
+        'port' => 3306,
+        'dbname' => '<DB_NAME>',
+        'user' => 'DB_USER',
+        'password' => 'DB_USER_PASSWORD',
+    ],
+];
+```
+
+> **NOTA:** Ajuste a configuração de acordo com as suas preferencias de banco de dados e variáveis de ambiente.
+
+## Docker-Composer
+
+```
+$ docker-compose build --no-cache
+$ docker-compose up -d
+```
+
+## Instalando dependicias do projeto
+
 Arquivo `composer.json`:
 
 ```json
@@ -39,32 +82,30 @@ Arquivo `composer.json`:
 ```
 
 ```bash
+$ cd app-php
 $ composer install
 ```
 
-## Docker-Composer
+## Doctrine - Primeiro update 
 
-```
-$ docker-compose build --no-cache
-$ docker-compose up -d
+Primeira atualização do Doctrine na base de dados
+```bash
+$ vendor/bin/doctrine orm:schema-tool:update --force
+
+ Updating database schema...
+
+     1 query was executed
+
+ [OK] Database schema updated successfully!
 ```
 
-## Doctrine commands
+**NOTA:** Caso tenha problemas, verifique as configurações de IP no docker-compose, senhas da base de dados e ect.
+
+
+## Doctrine - commands
 
 CLI do Doctrine
 Um require no arquivp Bootstrap e passar nossa instância do Entity Manager para o Console Runner do Doctrine.
-
-Arquivo `cli-config.php`:
-
-```php
-<?php
-
-use \Doctrine\ORM\Tools\Console\ConsoleRunner;
-
-require_once "./bootstrap.php";
-
-return  ConsoleRunner::createHelperSet($entityManager);
-```
 
 Comandos DOCTRINE Uteis
 ```bash

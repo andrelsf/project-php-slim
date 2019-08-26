@@ -1,7 +1,7 @@
 <?php
 
 define('APP_ROOT', __DIR__);
-$database = include(__DIR__."/src/Config/Mysql.php");
+$database = include(__DIR__."/src/Config/MySQL.php");
 
 return [
     'settings' => [
